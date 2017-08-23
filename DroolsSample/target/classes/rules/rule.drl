@@ -1,0 +1,34 @@
+package com.drools.model;
+import com.drools.model.Employee;
+
+
+
+rule "skill"
+no-loop
+		when
+		$g : Employee( skill == "hadoop", check == true )
+		then	
+		insert( new Employee("hadoop"));
+		System.out.println($g.getSkill());
+end
+
+rule "visa"
+no-loop
+		when 
+	    $a: Employee(skill == "hadoop", visa == "UK" , check == true) 
+	    then		
+		insert (new Employee("developer","UK", true));
+		System.out.println($a.getSkill() + " : " + $a.getVisa());
+end
+
+rule "visa2"
+no-loop
+		when 
+	    $c: Employee(skill == "hadoop", role == "developer", check == true)
+	    then
+		System.out.println($c.getSkill() + " : " + $c.getVisa() + " : " +$c.getRole());		
+//		insert (new Employee());		
+end
+
+
+
